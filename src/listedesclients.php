@@ -48,7 +48,7 @@
 </div>
   <div class="container" style="padding:3%;max-width:68%">
   <?php if ($modificationPossible){ ?><button data-toggle="modal" data-target="#AjouterUnClient" class="btn btn-light border border-dark float-right" >Ajouter un client</button> <?php } ?>
-        
+    <input type="text" id="input" onkeyup="recherche_client()" placeholder="Entrer le nom du client ..">
     <table id="dtBasicExample" class="table table-striped table-responsive-sm" style="font-size: 60%;">
       <thead class="thead-dark">
         <tr>
@@ -89,14 +89,27 @@
       </tbody>
     </table>
   </div>
-  <script>
-    $(document).ready(function () {
-    $('#dtBasicExample').DataTable();
-    $('.dataTables_length').addClass('bs-select');
-  });
 
-  
+  <script type="text/javascript">
+  function recherche_client() {
+    function prepare_data(chains_car){
+        return chains_car.toString().trim();
+        }
+    var input = prepare_data(document.getElementById("input").innerText.toLowerCase());
+    var table = document.getElementById("dtBasicExample");
+    var tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td");
+      for (j = 0; j < td.length; j++){
+          cellule = td[j].textContent.toLowerCase();
+          if(cellule.indexOf(input) > -1){
+            console.log("cc");
+          }
+      }
+    }
+  }
   </script>
+
 </body>
 
   <div class="container-fluid">

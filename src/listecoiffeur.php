@@ -95,10 +95,7 @@ if(!isset($_GET['modif']) && isset($_SESSION['COI_MAIL'])){
     </table>
   </div>
 
-//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table
-//https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table_desc
-//https://github.com/divanov11/sortable-table/blob/master/Sortable.html
-//https://www.willmaster.com/library/features/sorting-a-table-with-javascript.php
+
 //https://www.w3schools.com/howto/howto_js_filter_table.asp
 //https://morioh.com/p/51dbc30377fc
 //https://codepen.io/chriscoyier/pen/tIuBL
