@@ -90,7 +90,7 @@
     </table>
   </div>
 
-  <script type="text/javascript">
+  <script type="text /javascript">
   function recherche_client() {
     function prepare_data(chains_car){
         return chains_car.toString().trim();
