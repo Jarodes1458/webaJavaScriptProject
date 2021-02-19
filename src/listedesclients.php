@@ -90,21 +90,30 @@
     </table>
   </div>
 
-  <script type="text /javascript">
+  <script type="text/javascript">
+
   function recherche_client() {
-    function prepare_data(chains_car){
-        return chains_car.toString().trim();
+    var input,table,line,tr,cellule,td,colone;
+    function prepare_data(chains){
+        return chains.toString().trim();
         }
-    var input = prepare_data(document.getElementById("input").innerText.toLowerCase());
-    var table = document.getElementById("dtBasicExample");
-    var tr = table.getElementsByTagName("tr");
+    input = prepare_data(document.getElementById("input").innerText.toLowerCase());
+    table = document.getElementById("dtBasicExample");
+    tr = table.getElementsByTagName("tr");
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td");
-      for (j = 0; j < td.length; j++){
-          cellule = td[j].textContent.toLowerCase();
-          if(cellule.indexOf(input) > -1){
-            console.log("cc");
+      line = tr[i];
+      td = line.getElementsByTagName("td");
+      for (j = 0; j < td.length; j++) {
+          colone = td[j];
+          cellule = colone.textContent.toLowerCase();
+          if (cellule.indexOf(input) > -1) {
+              var afficherligne = true;
           }
+      }
+      if(afficherligne){
+          line.style.display = 'block';
+      }else{
+          line.style.display = 'none';
       }
     }
   }
