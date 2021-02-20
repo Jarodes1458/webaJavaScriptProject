@@ -46,9 +46,9 @@
 <div class="container">
 <h2  style="text-align: center;margin-top:50px">Liste des Clients du Salon</h2>
 </div>
-  <div class="container" style="padding:3%;max-width:68%">
+  <div id="divTable" class="container divTable"  style="padding:3%;max-width:68%">
   <?php if ($modificationPossible){ ?><button data-toggle="modal" data-target="#AjouterUnClient" class="btn btn-light border border-dark float-right" >Ajouter un client</button> <?php } ?>
-    <input type="text" id="input" onkeyup="recherche_client()" placeholder="Entrer le nom du client ..">
+    <input type="text" id="input"  placeholder="Entrer le nom du client ..">
     <table id="dtBasicExample" class="table table-striped table-responsive-sm" style="font-size: 60%;">
       <thead class="thead-dark">
         <tr>
@@ -61,7 +61,7 @@
           <th scope="th-sm">Action</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tbody">
         <?php 
           if ($modificationPossible){
             foreach(getAllClient() as $client){ ?>
@@ -91,32 +91,52 @@
   </div>
 
   <script type="text/javascript">
-
-  function recherche_client() {
-    var input,table,line,tr,cellule,td,colone;
-    function prepare_data(chains){
-        return chains.toString().trim();
-        }
-    input = prepare_data(document.getElementById("input").innerText.toLowerCase());
-    table = document.getElementById("dtBasicExample");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      line = tr[i];
-      td = line.getElementsByTagName("td");
-      for (j = 0; j < td.length; j++) {
-          colone = td[j];
-          cellule = colone.textContent.toLowerCase();
-          if (cellule.indexOf(input) > -1) {
-              var afficherligne = true;
+      document.getElementById("input").addEventListener("input", recherche_client);
+      function prepare_data(chains){
+          var data = chains.replace(/^\s+|\s+$/gm,'');
+          return data.toUpperCase();
+      }
+      function recherche_client() {
+          var input,table,line,tr,clear_data,CountTr;
+          input = document.getElementById("input");
+          clear_data = prepare_data(input.value);
+          table = document.getElementById("dtBasicExample");
+          tr = table.getElementsByTagName("tr");
+          CountTr = 0 ;
+          for (i = 0; i < tr.length; i++){
+              line = tr[i];
+              var td1 = line.getElementsByTagName("td")[0];
+              var td2 = line.getElementsByTagName("td")[1];
+              var td3 = line.getElementsByTagName("td")[2];
+              var td4 = line.getElementsByTagName("td")[3];
+              if(td1 || td2 || td3 || td4) {
+                  var textvalue1 = td1.textContent;
+                  var textvalue2 = td2.textContent;
+                  var textvalue3 = td3.textContent;
+                  var textvalue4 = td4.textContent;
+                  if (textvalue1.toUpperCase().indexOf(clear_data) > -1 || textvalue2.toUpperCase().indexOf(clear_data) >-1 || textvalue3.toUpperCase().indexOf(clear_data) >-1 || textvalue4.toUpperCase().indexOf(clear_data) >-1) {
+                      line.style.display = '';
+                  } else {
+                      line.style.display = 'none';
+                      CountTr++;
+                  }
+              }
+          }
+          var divTab = document.getElementById("divTable");
+          if (CountTr > 249){
+              var messageErrorTag= document.createElement("p");
+              messageErrorTag.setAttribute("id","error");
+              var messageErrorText = document.createTextNode("Aucun résultat Trouvé");
+              if(document.getElementById("error") == undefined)
+              {
+              divTab.appendChild(messageErrorTag);
+              messageErrorTag.appendChild(messageErrorText);
+              messageErrorTag.style.color="red";
+              }
+          }else{
+              document.getElementById("error").remove();
           }
       }
-      if(afficherligne){
-          line.style.display = 'block';
-      }else{
-          line.style.display = 'none';
-      }
-    }
-  }
   </script>
 
 </body>
