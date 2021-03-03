@@ -46,9 +46,9 @@
 <div class="container">
 <h2  style="text-align: center;margin-top:50px">Liste des Clients du Salon</h2>
 </div>
-  <div class="container" style="padding:3%;max-width:68%">
+  <div id="divTable" class="container divTable"  style="padding:3%;max-width:68%">
   <?php if ($modificationPossible){ ?><button data-toggle="modal" data-target="#AjouterUnClient" class="btn btn-light border border-dark float-right" >Ajouter un client</button> <?php } ?>
-    <input type="text" id="input" onkeyup="recherche_client()" placeholder="Entrer le nom du client ..">
+    <input type="text" id="input"  placeholder="Entrer le nom du client ..">
     <table id="dtBasicExample" class="table table-striped table-responsive-sm" style="font-size: 60%;">
       <thead class="thead-dark">
         <tr>
@@ -61,8 +61,8 @@
           <th scope="th-sm">Action</th>
         </tr>
       </thead>
-      <tbody>
-        <?php 
+      <tbody id="tbody">
+        <?php
           if ($modificationPossible){
             foreach(getAllClient() as $client){ ?>
             <tr>
@@ -76,7 +76,7 @@
                   <a style="cursor: grab;" onclick="donneesSupprimerClient('<?=$client['CLI_NOM']?>', '<?=$client['CLI_PRENOM']?>', '<?=$client['CLI_ID']?>')" data-toggle="modal" data-target="#SupprimerClient" class="fa fa-trash"></a>
                 </td>
             </tr>
-        <?php } }else{ 
+        <?php } }else{
           foreach(getAllClientPourCoiffeur($_SESSION["COI_ID"]) as $client){ ?>
           <tr>
               <td><?=$client["cli_nom"]?></td>
@@ -89,26 +89,57 @@
       </tbody>
     </table>
   </div>
-
+/*
+https://datatables.net/examples/server_side/pipeline.html
+https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-php/
   <script type="text/javascript">
-  function recherche_client() {
-    function prepare_data(chains_car){
-        return chains_car.toString().trim();
-        }
-    var input = prepare_data(document.getElementById("input").innerText.toLowerCase());
-    var table = document.getElementById("dtBasicExample");
-    var tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td");
-      for (j = 0; j < td.length; j++){
-          cellule = td[j].textContent.toLowerCase();
-          if(cellule.indexOf(input) > -1){
-            console.log("cc");
+      document.getElementById("input").addEventListener("input", recherche_client);
+      function prepare_data(chains){
+          var data = chains.replace(/^\s+|\s+$/gm,'');
+          return data.toUpperCase();
+      }
+      function recherche_client() {
+          var input,table,line,tr,clear_data,CountTr;
+          input = document.getElementById("input");
+          clear_data = prepare_data(input.value);
+          table = document.getElementById("dtBasicExample");
+          tr = table.getElementsByTagName("tr");
+          CountTr = 0 ;
+          for (i = 0; i < tr.length; i++){
+              line = tr[i];
+              var td1 = line.getElementsByTagName("td")[0];
+              var td2 = line.getElementsByTagName("td")[1];
+              var td3 = line.getElementsByTagName("td")[2];
+              var td4 = line.getElementsByTagName("td")[3];
+              if(td1 || td2 || td3 || td4) {
+                  var textvalue1 = td1.textContent;
+                  var textvalue2 = td2.textContent;
+                  var textvalue3 = td3.textContent;
+                  var textvalue4 = td4.textContent;
+                  if (textvalue1.toUpperCase().indexOf(clear_data) > -1 || textvalue2.toUpperCase().indexOf(clear_data) >-1 || textvalue3.toUpperCase().indexOf(clear_data) >-1 || textvalue4.toUpperCase().indexOf(clear_data) >-1) {
+                      line.style.display = '';
+                  } else {
+                      line.style.display = 'none';
+                      CountTr++;
+                  }
+              }
+          }
+          var divTab = document.getElementById("divTable");
+          if (CountTr > tr.length){
+              var messageErrorTag= document.createElement("p");
+              messageErrorTag.setAttribute("id","error");
+              var messageErrorText = document.createTextNode("Aucun résultat Trouvé");
+              if(document.getElementById("error") == undefined)
+              {
+              divTab.appendChild(messageErrorTag);
+              messageErrorTag.appendChild(messageErrorText);
+              messageErrorTag.style.color="red";
+              }
+          }else{
+              document.getElementById("error").remove();
           }
       }
-    }
-  }
-  </script>
+  </script>*/
 
 </body>
 
