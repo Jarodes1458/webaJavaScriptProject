@@ -90,8 +90,12 @@
     </table>
   </div>
 /*
-https://datatables.net/examples/server_side/pipeline.html
-https://makitweb.com/datatables-ajax-pagination-with-search-and-sort-php/
+http://www.mattmorgante.com/technology/ajax-pagination
+https://stackoverflow.com/questions/31920360/dynamic-pagination-in-jquery
+https://phppot.com/php/ajax-pagination-with-tabular-records-using-php-and-jquery/
+https://www.studentstutorial.com/ajax/pagination#
+https://www.sitepoint.com/pagination-jquery-ajax-php/
+
   <script type="text/javascript">
       document.getElementById("input").addEventListener("input", recherche_client);
       function prepare_data(chains){
