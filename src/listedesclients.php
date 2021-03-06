@@ -62,7 +62,7 @@
         </tr>
       </thead>
       <tbody id="tbody">
-        <?php 
+        <?php
           if ($modificationPossible){
             foreach(getAllClient() as $client){ ?>
             <tr>
@@ -76,7 +76,7 @@
                   <a style="cursor: grab;" onclick="donneesSupprimerClient('<?=$client['CLI_NOM']?>', '<?=$client['CLI_PRENOM']?>', '<?=$client['CLI_ID']?>')" data-toggle="modal" data-target="#SupprimerClient" class="fa fa-trash"></a>
                 </td>
             </tr>
-        <?php } }else{ 
+        <?php } }else{
           foreach(getAllClientPourCoiffeur($_SESSION["COI_ID"]) as $client){ ?>
           <tr>
               <td><?=$client["cli_nom"]?></td>
@@ -89,6 +89,12 @@
       </tbody>
     </table>
   </div>
+/*
+http://www.mattmorgante.com/technology/ajax-pagination
+https://stackoverflow.com/questions/31920360/dynamic-pagination-in-jquery
+https://phppot.com/php/ajax-pagination-with-tabular-records-using-php-and-jquery/
+https://www.studentstutorial.com/ajax/pagination#
+https://www.sitepoint.com/pagination-jquery-ajax-php/
 
   <script type="text/javascript">
       document.getElementById("input").addEventListener("input", recherche_client);
@@ -123,7 +129,7 @@
               }
           }
           var divTab = document.getElementById("divTable");
-          if (CountTr > 249){
+          if (CountTr > tr.length){
               var messageErrorTag= document.createElement("p");
               messageErrorTag.setAttribute("id","error");
               var messageErrorText = document.createTextNode("Aucun résultat Trouvé");
@@ -137,7 +143,7 @@
               document.getElementById("error").remove();
           }
       }
-  </script>
+  </script>*/
 
 </body>
 
