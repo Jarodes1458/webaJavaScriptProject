@@ -4,7 +4,7 @@
  */
 
 
-
+$connection = mysqli_connect('localhost','root','','hhva_team2020_5');
 if ($_SERVER['SERVER_NAME'] == "esig-sandbox.ch"){
     function myConnection() {
         static $dbc = null;
@@ -1232,7 +1232,7 @@ function couperMots($mots, $longueur){
 function getAllClient()
 {
     try {
-        $request = myConnection()->prepare("SELECT * FROM ely_client WHERE cli_statut = 'ACTIF'");
+        $request = myConnection()->prepare("SELECT * FROM ely_client WHERE cli_statut  = 'ACTIF' ORDER BY ely_client.cli_id LIMIT 5");
         $request->execute();
     } catch (PDOException $e) {
         header("Location:error?message=".$e->getMessage());

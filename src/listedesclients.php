@@ -41,7 +41,9 @@
 
   if (isset($_SESSION["COI_POSTE"])){
 ?>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <body style="background-color: white;">
 <div class="container">
 <h2  style="text-align: center;margin-top:50px">Liste des Clients du Salon</h2>
@@ -58,25 +60,20 @@
             <th scope="th-sm">Téléphone</th>
             <th scope="th-sm">Email</th>
           <?php } ?>
-          <th scope="th-sm">Action</th>
         </tr>
       </thead>
       <tbody id="tbody">
         <?php
           if ($modificationPossible){
-            foreach(getAllClient() as $client){ ?>
-            <tr>
+            foreach(getAllClient() as $client){?>
+            <tr id="resultat"  >
               <td><?=$client["CLI_NOM"]?></td>
               <td><?=$client["CLI_PRENOM"]?></td>
               <td><?=$client["CLI_TEL"]?></td>
               <td><?=$client["CLI_EMAIL"]?></td>
-                <td>
-                  <a href="fiche client?id=<?=$client["CLI_ID"]?>" class="far fa-address-card" style="cursor: grab;text-decoration:none"></a>
-                  &ensp;
-                  <a style="cursor: grab;" onclick="donneesSupprimerClient('<?=$client['CLI_NOM']?>', '<?=$client['CLI_PRENOM']?>', '<?=$client['CLI_ID']?>')" data-toggle="modal" data-target="#SupprimerClient" class="fa fa-trash"></a>
-                </td>
             </tr>
-        <?php } }else{
+        <?php }
+          }else{
           foreach(getAllClientPourCoiffeur($_SESSION["COI_ID"]) as $client){ ?>
           <tr>
               <td><?=$client["cli_nom"]?></td>
@@ -88,13 +85,21 @@
         <?php } } ?>
       </tbody>
     </table>
+      <div class="row">
+          <div class="col-xl-6 col-md-6">
+              <button type="button"   class=" btn btn-success btn-sm" id="afficherplus"><i class="fa fa-refresh"></i> Afficher Plus de Client </button>
+          </div>
+      </div>
   </div>
-/*
-http://www.mattmorgante.com/technology/ajax-pagination
-https://stackoverflow.com/questions/31920360/dynamic-pagination-in-jquery
-https://phppot.com/php/ajax-pagination-with-tabular-records-using-php-and-jquery/
-https://www.studentstutorial.com/ajax/pagination#
-https://www.sitepoint.com/pagination-jquery-ajax-php/
+
+
+
+
+<!--http://www.mattmorgante.com/technology/ajax-pagination-->
+<!--https://stackoverflow.com/questions/31920360/dynamic-pagination-in-jquery-->
+<!--https://phppot.com/php/ajax-pagination-with-tabular-records-using-php-and-jquery/-->
+<!--https://www.studentstutorial.com/ajax/pagination#-->
+<!--https://www.sitepoint.com/pagination-jquery-ajax-php/-->
 
   <script type="text/javascript">
       document.getElementById("input").addEventListener("input", recherche_client);
@@ -143,7 +148,7 @@ https://www.sitepoint.com/pagination-jquery-ajax-php/
               document.getElementById("error").remove();
           }
       }
-  </script>*/
+  </script>
 
 </body>
 
@@ -223,8 +228,7 @@ https://www.sitepoint.com/pagination-jquery-ajax-php/
     </div>
   </div>
 </div>
-
-
+<script src="afficherplusdeclients.js"></script>
 
 
   <?php }else{ ?>
