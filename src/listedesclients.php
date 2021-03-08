@@ -66,7 +66,7 @@
         <?php
           if ($modificationPossible){
             foreach(getAllClient() as $client){?>
-            <tr id="resultat"  >
+            <tr  >
               <td><?=$client["CLI_NOM"]?></td>
               <td><?=$client["CLI_PRENOM"]?></td>
               <td><?=$client["CLI_TEL"]?></td>

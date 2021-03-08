@@ -13,6 +13,7 @@ $(document).ready(function ()
                 contentType: "application/json; charset=utf-8",
                 dataType: "JSON",
                 cache: false,
+                //SERVER
                 success: function (data) {
                     if (data){
                         var ligne = '';
