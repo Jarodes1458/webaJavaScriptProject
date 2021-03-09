@@ -44,6 +44,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="afficherplusdeclients.js"></script>
+
 <body style="background-color: white;">
 <div class="container">
 <h2  style="text-align: center;margin-top:50px">Liste des Clients du Salon</h2>
@@ -101,54 +103,54 @@
 <!--https://www.studentstutorial.com/ajax/pagination#-->
 <!--https://www.sitepoint.com/pagination-jquery-ajax-php/-->
 
-  <script type="text/javascript">
-      document.getElementById("input").addEventListener("input", recherche_client);
-      function prepare_data(chains){
-          var data = chains.replace(/^\s+|\s+$/gm,'');
-          return data.toUpperCase();
-      }
-      function recherche_client() {
-          var input,table,line,tr,clear_data,CountTr;
-          input = document.getElementById("input");
-          clear_data = prepare_data(input.value);
-          table = document.getElementById("dtBasicExample");
-          tr = table.getElementsByTagName("tr");
-          CountTr = 0 ;
-          for (i = 0; i < tr.length; i++){
-              line = tr[i];
-              var td1 = line.getElementsByTagName("td")[0];
-              var td2 = line.getElementsByTagName("td")[1];
-              var td3 = line.getElementsByTagName("td")[2];
-              var td4 = line.getElementsByTagName("td")[3];
-              if(td1 || td2 || td3 || td4) {
-                  var textvalue1 = td1.textContent;
-                  var textvalue2 = td2.textContent;
-                  var textvalue3 = td3.textContent;
-                  var textvalue4 = td4.textContent;
-                  if (textvalue1.toUpperCase().indexOf(clear_data) > -1 || textvalue2.toUpperCase().indexOf(clear_data) >-1 || textvalue3.toUpperCase().indexOf(clear_data) >-1 || textvalue4.toUpperCase().indexOf(clear_data) >-1) {
-                      line.style.display = '';
-                  } else {
-                      line.style.display = 'none';
-                      CountTr++;
-                  }
-              }
-          }
-          var divTab = document.getElementById("divTable");
-          if (CountTr > tr.length){
-              var messageErrorTag= document.createElement("p");
-              messageErrorTag.setAttribute("id","error");
-              var messageErrorText = document.createTextNode("Aucun résultat Trouvé");
-              if(document.getElementById("error") == undefined)
-              {
-              divTab.appendChild(messageErrorTag);
-              messageErrorTag.appendChild(messageErrorText);
-              messageErrorTag.style.color="red";
-              }
-          }else{
-              document.getElementById("error").remove();
-          }
-      }
-  </script>
+<!--  <script type="text/javascript">-->
+<!--      document.getElementById("input").addEventListener("input", recherche_client);-->
+<!--      function prepare_data(chains){-->
+<!--          var data = chains.replace(/^\s+|\s+$/gm,'');-->
+<!--          return data.toUpperCase();-->
+<!--      }-->
+<!--      function recherche_client() {-->
+<!--          var input,table,line,tr,clear_data,CountTr;-->
+<!--          input = document.getElementById("input");-->
+<!--          clear_data = prepare_data(input.value);-->
+<!--          table = document.getElementById("dtBasicExample");-->
+<!--          tr = table.getElementsByTagName("tr");-->
+<!--          CountTr = 0 ;-->
+<!--          for (i = 0; i < tr.length; i++){-->
+<!--              line = tr[i];-->
+<!--              var td1 = line.getElementsByTagName("td")[0];-->
+<!--              var td2 = line.getElementsByTagName("td")[1];-->
+<!--              var td3 = line.getElementsByTagName("td")[2];-->
+<!--              var td4 = line.getElementsByTagName("td")[3];-->
+<!--              if(td1 || td2 || td3 || td4) {-->
+<!--                  var textvalue1 = td1.textContent;-->
+<!--                  var textvalue2 = td2.textContent;-->
+<!--                  var textvalue3 = td3.textContent;-->
+<!--                  var textvalue4 = td4.textContent;-->
+<!--                  if (textvalue1.toUpperCase().indexOf(clear_data) > -1 || textvalue2.toUpperCase().indexOf(clear_data) >-1 || textvalue3.toUpperCase().indexOf(clear_data) >-1 || textvalue4.toUpperCase().indexOf(clear_data) >-1) {-->
+<!--                      line.style.display = '';-->
+<!--                  } else {-->
+<!--                      line.style.display = 'none';-->
+<!--                      CountTr++;-->
+<!--                  }-->
+<!--              }-->
+<!--          }-->
+<!--          var divTab = document.getElementById("divTable");-->
+<!--          if (CountTr > tr.length){-->
+<!--              var messageErrorTag= document.createElement("p");-->
+<!--              messageErrorTag.setAttribute("id","error");-->
+<!--              var messageErrorText = document.createTextNode("Aucun résultat Trouvé");-->
+<!--              if(document.getElementById("error") == undefined)-->
+<!--              {-->
+<!--              divTab.appendChild(messageErrorTag);-->
+<!--              messageErrorTag.appendChild(messageErrorText);-->
+<!--              messageErrorTag.style.color="red";-->
+<!--              }-->
+<!--          }else{-->
+<!--              document.getElementById("error").remove();-->
+<!--          }-->
+<!--      }-->
+<!--  </script>-->
 
 </body>
 
@@ -228,7 +230,6 @@
     </div>
   </div>
 </div>
-<script src="afficherplusdeclients.js"></script>
 
 
   <?php }else{ ?>

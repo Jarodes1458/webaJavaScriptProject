@@ -8,9 +8,7 @@ $(document).ready(function ()
             {
                 type: "GET",
                 url: "./chargerdonnee.php?lastid="+lastclientid,
-                data: {lastclientid:lastclientid},
-                async: true,
-                contentType: "application/json; charset=utf-8",
+                async: false,
                 dataType: "JSON",
                 cache: false,
                 //SERVER
@@ -19,12 +17,10 @@ $(document).ready(function ()
                         var ligne = '';
                             $.each(data, function (i, item) {
                                 ligne += '<tr><td>' + item.CLI_NOM + '</td><td>' + item.CLI_PRENOM +
-                                    '</td><td>' + item.CLI_TEL + '</td><td>' + item.CLI_EMAIL + '</td><td>';
+                                    '</td><td>' + item.CLI_TEL + '</td><td>' + item.CLI_EMAIL + '</td><tr>';
                             });
-                            $('#dtBasicExample').append(ligne);
+                            $('#dtBasicExample').append(ligne);}
                     }
-
-                }
             });
     });
 });

@@ -351,6 +351,7 @@ function getAllCoupePrestation2()
         }
         return $request->fetchAll(PDO::FETCH_ASSOC);
 }
+/* bdd */
 
 function addService($type, $nom, $prix, $time, $description){
     try{
